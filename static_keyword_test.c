@@ -3,6 +3,16 @@
 #include <stdlib.h>
 #include <time.h>
 
+// can only be seen in this .c file, not others
+// (keeps state of the variable private to other files)
+static double averageVal = 0; 
+
+static void average(int value) {
+	static int count = 0;
+	averageVal = (averageVal * count + value) / (count + 1);
+	count += 1;
+}
+
 // static can be used to 
 // keep one instance of a variable
 // inside a function
@@ -30,6 +40,7 @@ int main() {
 	}
 
 	printf("Profit from random trading: %d\n", sum_profit(0));
+	printf("Average initial value: %u\n", averageVal);
 
 	return 0;
 }
